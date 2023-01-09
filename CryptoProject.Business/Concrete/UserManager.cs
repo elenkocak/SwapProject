@@ -24,12 +24,42 @@ namespace SwapProject.Business.Concrete
 
         public IDataResult<bool> ChangeUserPassword(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var checkUser = _userDal.Get(u => u.Id == user.Id);
+                if (checkUser != null)
+                {
+                    _userDal.Update(user);
+                    return new SuccessDataResult<bool>(true, "Ok", Messages.success);
+                }
+                return new ErrorDataResult<bool>(false, "User not found", Messages.not_found);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<bool>(false, ex.Message, Messages.unknown_err);
+                throw;
+            }
         }
 
-        public IDataResult<bool> Create(UserCreateDto userCreateDto)
+        public IDataResult<bool> Create(User user)
         {
-            throw new NotImplementedException();
+           
+
+                try
+                {
+                    if (user != null)
+                    {
+                        _userDal.Add(user);
+                        return new SuccessDataResult<bool>(true, "Ok", Messages.success);
+                    }
+                    return new ErrorDataResult<bool>(false, "Given Dto is null", Messages.err_null);
+                }
+                catch (Exception ex)
+                {
+                    return new ErrorDataResult<bool>(false, ex.Message, Messages.unknown_err);
+                }
+
+        
 
         }
 
@@ -97,6 +127,23 @@ namespace SwapProject.Business.Concrete
             {
 
                 return new ErrorDataResult<UserListDto>(null, e.Message, Messages.unknown_err);
+            }
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            try
+            {
+                if (user != null)
+                {
+                    var claims = _userDal.GetClaims(user);
+                    return new ErrorDataResult<List<OperationClaim>>(claims, "Ok", Messages.success);
+                }
+                return new ErrorDataResult<List<OperationClaim>>(null, "Operation claims not found", Messages.not_found);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<List<OperationClaim>>(null, ex.Message, Messages.unknown_err);
             }
         }
 

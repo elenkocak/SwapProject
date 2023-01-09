@@ -1,0 +1,17 @@
+﻿using CryptoProject.Business.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SwapProject.Entity.DTO.WalletDto
+{
+    public class WalletCreateDto:IDto
+    {
+        public int? UserId { get; set; }
+        public int? CryptoCurrencyId { get; set; }
+        public decimal? Amount { get; set; }
+        public bool Status { get; set; }
+    }
+}

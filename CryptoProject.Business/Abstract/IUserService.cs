@@ -16,10 +16,10 @@ namespace SwapProject.Business.Abstract
         IDataResult<User> Get(Expression<Func<User, bool>> filter);
         IDataResult<List<UserListDto>> GetList(Expression<Func<User, bool>> filter=null);
         IDataResult<UserListDto> GetById(int id);
-        IDataResult<bool> Create(UserCreateDto userCreateDto);  
+        IDataResult<bool> Create(User user);  
         IDataResult<bool> Update(UserUpdateDto userUpdateDto);
         IDataResult<bool> ChangeUserPassword(User user);
         IDataResult<bool> Delete(int id);
-        //IDataResult<List<OperationClaim>> GetClaims(User user);
+        IDataResult<List<OperationClaim>> GetClaims(User user);
     }
 }

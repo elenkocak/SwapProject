@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapProject.Entity", "CryptoProject.Entity\SwapProject.Entity.csproj", "{4FDB499D-99FF-4FA4-AA12-FFD0746C729A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwapProject.Entity", "CryptoProject.Entity\SwapProject.Entity.csproj", "{4FDB499D-99FF-4FA4-AA12-FFD0746C729A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapProject.DataAccess", "CryptoProject.DataAccess\SwapProject.DataAccess.csproj", "{9B2FF8ED-F665-49DC-83AA-24F3224EC8ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwapProject.DataAccess", "CryptoProject.DataAccess\SwapProject.DataAccess.csproj", "{9B2FF8ED-F665-49DC-83AA-24F3224EC8ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapProject.Business", "CryptoProject.Business\SwapProject.Business.csproj", "{BF8760CA-520C-4034-9515-17ACBDD07B1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwapProject.Business", "CryptoProject.Business\SwapProject.Business.csproj", "{BF8760CA-520C-4034-9515-17ACBDD07B1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapProject.Core", "CryptoProject.Core\SwapProject.Core.csproj", "{A14E2FD9-A4C1-4959-A402-1EE1F06C8919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwapProject.Core", "CryptoProject.Core\SwapProject.Core.csproj", "{A14E2FD9-A4C1-4959-A402-1EE1F06C8919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapProject.Api", "SwapProject.Api\SwapProject.Api.csproj", "{FED6CF42-26C1-4918-8CE1-EC22009700A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwapProject.Api", "SwapProject.Api\SwapProject.Api.csproj", "{FED6CF42-26C1-4918-8CE1-EC22009700A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{911DCC3A-07CC-49BF-9F54-60DA8B24F22B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FED6CF42-26C1-4918-8CE1-EC22009700A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED6CF42-26C1-4918-8CE1-EC22009700A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FED6CF42-26C1-4918-8CE1-EC22009700A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{911DCC3A-07CC-49BF-9F54-60DA8B24F22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911DCC3A-07CC-49BF-9F54-60DA8B24F22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911DCC3A-07CC-49BF-9F54-60DA8B24F22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911DCC3A-07CC-49BF-9F54-60DA8B24F22B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

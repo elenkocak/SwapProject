@@ -1,5 +1,5 @@
 ﻿using CryptoProject.Core.Repository;
-using SwapProject.Core.Entities.Concrete;
+using SwapProject.Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace SwapProject.DataAccess.Abstract
 {
-    public interface IUserDal:IEntityRepository<User>
+    public interface ICryptoCurrencyDal:IEntityRepository<Coin>
     {
-        List<OperationClaim> GetClaims(User user);
     }
 }

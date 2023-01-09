@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CryptoProject.Core\SwapProject.Core.csproj" />
+    <ProjectReference Include="..\CryptoProject.Entity\SwapProject.Entity.csproj" />
   </ItemGroup>
 
 </Project>
