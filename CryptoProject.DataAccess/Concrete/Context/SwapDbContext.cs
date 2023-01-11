@@ -21,5 +21,8 @@ namespace CryptoProject.DataAccess.Concrete.Context
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Coin> Coins { get; set; }
         public DbSet<Parity> Parities { get; set; }
+        public DbSet<SellCoin> SellCoins { get; set; }
+        public DbSet<BuyCoin> BuyCoins { get; set; }
+        public DbSet<CompanyWallet> CompanyWallets { get; set; }
     }
 }

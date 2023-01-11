@@ -1,5 +1,6 @@
 ﻿using CryptoProject.Business.Result;
 using SwapProject.Business.Concrete;
+using SwapProject.Entity.Concrete;
 using SwapProject.Entity.DTO.WalletDto;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SwapProject.Business.Abstract
     public interface IWalletService
     {
         IDataResult<bool> Create(WalletCreateDto walletCreateDto);
-        IDataResult<bool> Update(WalletUpdateDto walletUpdateDto);
+        IDataResult<Wallet> Update(WalletUpdateDto walletUpdateDto);
         IDataResult<List<WalletListDto>> GetList();
         IDataResult<List<WalletListDto>> ActiveGetList();
         IDataResult<bool> Delete(int walletId);

@@ -5,15 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwapProject.Entity.Concrete
+namespace SwapProject.Entity.DTO.ParityDto
 {
-    public class Parity:IEntity
+    public class ParityUpdateDto:IDto
     {
         public int? Id { get; set; }
         public int? ReceivedCoinId { get; set; }
-        public int? SoldCoinId { get; set; }    
-        public bool? IsActive { get; set; }  
+        public int? SoldCoinId { get; set; }
+        public bool? IsActive { get; set; }
         public decimal? FeeRate { get; set; }
-        //public decimal UnitPrice { get; set; }
     }
 }

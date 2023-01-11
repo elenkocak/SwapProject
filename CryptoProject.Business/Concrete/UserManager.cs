@@ -188,7 +188,7 @@ namespace SwapProject.Business.Concrete
                 var user = _userDal.Get(x => x.Id == userUpdateDto.Id);
                 if (user != null)
                 {
-                    _userDal.Update(new User
+                    _userDal.Update(new User()
                     {
                         Id=userUpdateDto.Id,
                         Name=userUpdateDto.Name,
@@ -196,9 +196,11 @@ namespace SwapProject.Business.Concrete
                         Username=userUpdateDto.Username,
                         Email=userUpdateDto.Email,
                         Status=userUpdateDto.Status,
+                        PasswordHash=user.PasswordHash,
+                        PasswordSalt=user.PasswordSalt
                         
                     });
-                    _userDal.Update(user);
+                    //_userDal.Update(user);
                     return new SuccessDataResult<bool>(true, "Ok", Messages.success);
                 }
                 return new ErrorDataResult<bool>(false, "Fail", Messages.operation_fail);

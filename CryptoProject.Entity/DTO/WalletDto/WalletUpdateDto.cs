@@ -11,7 +11,7 @@ namespace SwapProject.Entity.DTO.WalletDto
     {
         public int Id { get; set; }
         public int? UserId { get; set; }
-        public int? CryptoCurrencyId { get; set; }
+        public int? CoinId { get; set; }
         public decimal? Amount { get; set; }
         public bool Status { get; set; }
     }

@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace SwapProject.Entity.Concrete
 {
-    public class Wallet:IEntity
+    public class CompanyWallet:IEntity
     {
         public int Id { get; set; }
-        public int? UserId { get; set; }
-        public int? CoinId { get; set; }
-        public decimal? Amount { get; set; }
-        public bool Status { get; set; }
+        public int CoinId { get; set; }
+        public decimal Amount { get; set; }
     }
 }

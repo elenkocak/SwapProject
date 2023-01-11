@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace SwapProject.Entity.DTO.CryptoCurrencyDto
 {
-    public class CoinsListDto:IDto
+    public class CoinsCreateDto:IDto
     {
-        public int? Id { get; set; }
-        public string? CurrencyName { get; set; }
-        public string? CurrencyShortName { get; set; }
+        public string? CoinName { get; set; }
+        public string? CoinShortName { get; set; }
         public bool Status { get; set; }
     }
 }

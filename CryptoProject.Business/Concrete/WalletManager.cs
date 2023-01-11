@@ -15,10 +15,11 @@ namespace SwapProject.Business.Concrete
     public class WalletManager : IWalletService
     {
         private readonly IWalletDal _walletDal;
-
-        public WalletManager(IWalletDal walletDal)
+        private readonly IUserService _userService;
+        public WalletManager(IWalletDal walletDal, IUserService userService)
         {
             _walletDal = walletDal;
+            _userService = userService;
         }
 
         public IDataResult<List<WalletListDto>> ActiveGetList()
@@ -34,7 +35,7 @@ namespace SwapProject.Business.Concrete
                 {
                     var addwallet = new Wallet
                     {
-                        CryptoCurrencyId=walletCreateDto.CryptoCurrencyId,  
+                        CoinId = walletCreateDto.CoinId,  
                         Amount=walletCreateDto.Amount,
                         UserId=walletCreateDto.UserId,
                         Status=true
@@ -79,7 +80,7 @@ namespace SwapProject.Business.Concrete
                 Id = wallet.Id,
                 UserId = wallet.UserId,
                 Amount = wallet.Amount,
-                CryptoCurrencyId = wallet.CryptoCurrencyId,
+                CoinId = wallet.CoinId,
                 Status = wallet.Status
             };
             return new SuccessDataResult<WalletListDto>(walletlistDto);
@@ -98,13 +99,13 @@ namespace SwapProject.Business.Concrete
                         walletlistdto.Add(new WalletListDto
                         {
 
-                            Id=wallet.Id,
-                            UserId=wallet.UserId,
-                            Status=wallet.Status,
-                            Amount=wallet.Amount,
-                            CryptoCurrencyId=wallet.CryptoCurrencyId
-                           
-                        });
+                            Id = wallet.Id,
+                            UserId = wallet.UserId,
+                            Status = wallet.Status,
+                            Amount = wallet.Amount,
+                            CoinId = wallet.CoinId
+
+                        }) ;
                     }
                     return new SuccessDataResult<List<WalletListDto>>(walletlistdto);   
                 }
@@ -117,30 +118,32 @@ namespace SwapProject.Business.Concrete
             }
         }
 
-        public IDataResult<bool> Update(WalletUpdateDto walletUpdateDto)
+        public IDataResult<Wallet> Update(WalletUpdateDto walletUpdateDto)
         {
             try
             {
                 if (walletUpdateDto != null)
                 {
                     var wallet = _walletDal.Get(x => x.Id == walletUpdateDto.Id);
-                    if (wallet != null)
+                    var walletlist = new Wallet()
                     {
-                        wallet.Id = walletUpdateDto.Id;
-                        wallet.UserId = walletUpdateDto.UserId;
-                        wallet.CryptoCurrencyId = walletUpdateDto.CryptoCurrencyId;
-                        wallet.Status=walletUpdateDto.Status;
+                        Id = walletUpdateDto.Id,
+                        Amount = walletUpdateDto.Amount,
+                        Status = walletUpdateDto.Status,
+                        CoinId = walletUpdateDto.CoinId,
+                        UserId = walletUpdateDto.UserId
+                    };
+                    _walletDal.Update(walletlist);
+                    return new SuccessDataResult<Wallet>(walletlist, "Ok", Messages.success);
 
-                        return new SuccessDataResult<bool>(true, "Ok", Messages.success);
-                    }
-                    return new ErrorDataResult<bool>(false, "eror", Messages.not_found);
                 }
-                return new ErrorDataResult<bool>(false, "eror", Messages.err_null);
+                return new ErrorDataResult<Wallet>(null, "null", Messages.err_null);
+
             }
             catch (Exception e)
             {
 
-                return new ErrorDataResult<bool>(false, "eror", Messages.unknown_err);
+                return new ErrorDataResult<Wallet>(null, "error", Messages.unknown_err);
             }
         }
     }

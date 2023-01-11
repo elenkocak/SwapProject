@@ -118,7 +118,8 @@ namespace SwapProject.Business.Concrete
                         _userOperationClaimDal.Add(new UserOperationClaim { UserId = user.Id, OperationClaimId = (int)OperationClaims.Member });
                         var addwallet = new Wallet
                         {
-                            UserId = user.Id
+                            UserId = user.Id,
+                            Status = true,
                         };
                         _walletDal.Add(addwallet);
                         return new SuccessDataResult<bool>(true, "oK", Messages.success);

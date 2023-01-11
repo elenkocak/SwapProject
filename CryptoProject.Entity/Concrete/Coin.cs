@@ -10,8 +10,8 @@ namespace SwapProject.Entity.Concrete
     public class Coin:IEntity
     {
         public int? Id { get; set; }
-        public string? CurrencyName { get; set; }
-        public string? CurrencyShortName { get; set; }   
+        public string? CoinName { get; set; }
+        public string? CoinShortName { get; set; }   
         public bool Status { get; set; }    
 
     }

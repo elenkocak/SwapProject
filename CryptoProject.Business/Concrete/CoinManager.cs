@@ -1,6 +1,7 @@
 ﻿using CryptoProject.Business.Result;
 using SwapProject.Business.Abstract;
 using SwapProject.Business.Constants;
+using SwapProject.Core.Entities.Concrete;
 using SwapProject.DataAccess.Abstract;
 using SwapProject.DataAccess.Concrete.EntityFramework;
 using SwapProject.Entity.Concrete;
@@ -9,16 +10,17 @@ using SwapProject.Entity.DTO.WalletDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SwapProject.Business.Concrete
 {
-    public class CryptoCurrencyManager : ICryptoCurrencyService
+    public class CoinManager : ICoinService
     {
         ICryptoCurrencyDal _cryptoCurrencyDal;
 
-        public CryptoCurrencyManager(ICryptoCurrencyDal cryptoCurrencyDal)
+        public CoinManager(ICryptoCurrencyDal cryptoCurrencyDal)
         {
             _cryptoCurrencyDal = cryptoCurrencyDal;
         }
@@ -29,13 +31,13 @@ namespace SwapProject.Business.Concrete
             {
                 if (cryptoCurrencyCreateDto != null)
                 {
-                    var cryptocurrencyCheck = CryptoCurrencyExists(cryptoCurrencyCreateDto.CurrencyShortName);
+                    var cryptocurrencyCheck = CryptoCurrencyExists(cryptoCurrencyCreateDto.CoinShortName);
                     if (cryptocurrencyCheck.Success)
                     {
                         var addCryptoCurrency = new Coin
                         {
-                            CurrencyName = cryptoCurrencyCreateDto.CurrencyName,
-                            CurrencyShortName = cryptoCurrencyCreateDto.CurrencyShortName,
+                            CoinName = cryptoCurrencyCreateDto.CoinName,
+                            CoinShortName = cryptoCurrencyCreateDto.CoinShortName,
                             Status = true
                         };
                         _cryptoCurrencyDal.Add(addCryptoCurrency);
@@ -57,7 +59,7 @@ namespace SwapProject.Business.Concrete
         {
             try
             {
-                var crypto = _cryptoCurrencyDal.Get(x => x.CurrencyShortName == CurrrencyShortName);
+                var crypto = _cryptoCurrencyDal.Get(x => x.CoinShortName == CurrrencyShortName);
                 if (crypto != null)
                 {
                     return new ErrorDataResult<bool>(false, "crypto currency already registered", Messages.operation_fail);
@@ -92,14 +94,32 @@ namespace SwapProject.Business.Concrete
             }
         }
 
+        public IDataResult<Coin> Get(Expression<Func<Coin, bool>> filter)
+        {
+            try
+            {
+                var user = _cryptoCurrencyDal.Get(filter);
+                if (user != null)
+                {
+                    return new SuccessDataResult<Coin>(user, "Ok", Messages.success);
+                }
+                return new ErrorDataResult<Coin>(null, "fail", Messages.not_found);
+            }
+            catch (Exception e)
+            {
+
+                return new ErrorDataResult<Coin>(null, e.Message, Messages.unknown_err);
+            }
+        }
+
         public IDataResult<CoinsListDto> GetById(int id)
         {
             var cryptocurrency = _cryptoCurrencyDal.Get(x => x.Id == id);
             var cryptocurrencylistdto = new CoinsListDto
             {
                 Id = cryptocurrency.Id,
-                CurrencyShortName = cryptocurrency.CurrencyShortName,
-                CurrencyName = cryptocurrency.CurrencyName,
+                CoinShortName = cryptocurrency.CoinShortName,
+                CoinName = cryptocurrency.CoinName,
                 Status = cryptocurrency.Status,
             };
             return new SuccessDataResult<CoinsListDto>(cryptocurrencylistdto);
@@ -122,8 +142,8 @@ namespace SwapProject.Business.Concrete
                         {
                             Id = cryptocurrency.Id,
 
-                            CurrencyName = cryptocurrency.CurrencyName,
-                            CurrencyShortName=cryptocurrency.CurrencyShortName,
+                            CoinName = cryptocurrency.CoinName,
+                            CoinShortName = cryptocurrency.CoinShortName,
                            Status=cryptocurrency.Status,
 
                         });
@@ -148,11 +168,13 @@ namespace SwapProject.Business.Concrete
                     var cryptoCurrency = _cryptoCurrencyDal.Get(x => x.Id == cryptoCurrencyUpdateDto.Id);
                     if (cryptoCurrency != null)
                     {
-                        cryptoCurrency.Id = cryptoCurrencyUpdateDto.Id;
-                        cryptoCurrency.CurrencyName = cryptoCurrencyUpdateDto.CurrencyName; 
-                        cryptoCurrency.CurrencyShortName = cryptoCurrencyUpdateDto.CurrencyShortName;
-                       
-                        cryptoCurrency.Status = cryptoCurrencyUpdateDto.Status;
+                        _cryptoCurrencyDal.Update(new Coin()
+                        {
+                            CoinName = cryptoCurrencyUpdateDto.CoinName,
+                            CoinShortName= cryptoCurrencyUpdateDto.CoinShortName,
+                            Status = cryptoCurrencyUpdateDto.Status,    
+                            Id=cryptoCurrencyUpdateDto.Id
+                        });
 
                         return new SuccessDataResult<bool>(true, "Ok", Messages.success);
                     }

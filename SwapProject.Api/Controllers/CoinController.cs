@@ -7,11 +7,11 @@ namespace SwapProject.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CryptoCurrencyController : ControllerBase
+    public class CoinController : ControllerBase
     {
-        ICryptoCurrencyService _cryptoCurrencyService;
+        ICoinService _cryptoCurrencyService;
 
-        public CryptoCurrencyController(ICryptoCurrencyService cryptoCurrencyService)
+        public CoinController(ICoinService cryptoCurrencyService)
         {
             _cryptoCurrencyService = cryptoCurrencyService;
         }
