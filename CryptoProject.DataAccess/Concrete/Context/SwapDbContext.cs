@@ -13,7 +13,7 @@ namespace CryptoProject.DataAccess.Concrete.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=coinodb-dev.cjq6i1xxy6zz.eu-central-1.rds.amazonaws.com;Database=ElenSwapDb;Uid=sa;Password=DtzsCI3HF9n4WIX7O3dj6SSdC43PdpwpMtcaXtDlj8TJy3KDSJ;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=your-server-name;Database=your-db-name;Uid=sa;Password=your-password;TrustServerCertificate=True");
         }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaim { get; set; }
